@@ -23,11 +23,11 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-sequilize.sync()
-.then(result => {
-    app.listen(3000);
-})
-.catch(err => {
-    console.log(err);
-})
-
+sequilize
+    .sync()
+    .then((result) => {
+        app.listen(3000);
+    })
+    .catch((err) => {
+        console.log(err);
+    });

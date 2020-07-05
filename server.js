@@ -1,34 +1,33 @@
-const path = require('path')
+const path = require('path');
 
 const rootDir = require('./utils/path');
 
 const express = require('express');
 
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
-const errorController = require('./controllers/error')
+const errorController = require('./controllers/error');
 
 // const expressHbs = require('express-handlebars')
 // app.engine('hbs', expressHbs({
-//     layoutsDir: 'views/layouts/', 
-//     defaultLayout: 'main-layout', 
+//     layoutsDir: 'views/layouts/',
+//     defaultLayout: 'main-layout',
 //     extname: 'hbs'
 // }))
 
 const app = express();
 
-
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(rootDir, 'public')))
+app.use(express.static(path.join(rootDir, 'public')));
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
-app.use(errorController.get404Page)
+app.use(errorController.get404Page);
 
-app.listen(3000)
+app.listen(3000);
